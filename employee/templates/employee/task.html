@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Contact us</h1>
+
+  {% if submitted %}
+    <p class="success">
+     Your message was submitted successfully. Thank you.
+   </p>
+
+ {% else %}
+   <form action="" method="post" novalidate>
+       {% csrf_token %}
+       {{ form.as_p }}
+       <input type="submit" value="Submit">
+   </form>
+ {% endif %}
+{% endblock content %}
