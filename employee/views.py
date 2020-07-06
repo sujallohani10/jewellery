@@ -1,10 +1,12 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from .forms import EmployeeTaskForm
 from employee.models import EmployeeTasks
 
 
+@login_required(login_url='/accounts/login')
 def employeeTask(request):
     # Need to add employee to whom task is assigned
     if request.method == 'POST':
@@ -29,6 +31,7 @@ def employeeTask(request):
     return render(request, 'employee/task.html', {'form': form})
 
 
+@login_required(login_url='/accounts/login')
 def employeeTaskList(request):
     emp_task_list = EmployeeTasks.objects.all()
     print(emp_task_list)
