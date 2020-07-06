@@ -1,18 +1,58 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-  <h1>Contact us</h1>
+    <div class="container-fluid">
+        <h1>Enter Task for Employee</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.item|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.description|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.gold_weight|as_crispy_field }}
+              </div>
+              <div class="col-sm-6">
+                {{ form.silver_weight|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.bronze_weight|as_crispy_field }}
+              </div>
+              <div class="col-sm-6">
+                  {{ form.task_given_date|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    {{ form.completion_date|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Save Task</button>
+      </form>
+    </div>
 
-  {% if submitted %}
-    <p class="success">
-     Your message was submitted successfully. Thank you.
-   </p>
-
- {% else %}
-   <form action="" method="post" novalidate>
-       {% csrf_token %}
-       {{ form.as_p }}
-       <input type="submit" value="Submit">
-   </form>
- {% endif %}
 {% endblock content %}
+
+{% block javascript %}
+    <script>
+      $(function () {
+        $("#id_task_given_date").datetimepicker({
+          format: 'd/m/Y H:i',
+        });
+        $("#id_completion_date").datetimepicker({
+          format: 'd/m/Y H:i',
+        });
+      });
+    </script>
+{% endblock %}
