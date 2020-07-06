@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">TasksList of Employees</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Task</th>
+                      <th>Description</th>
+                      <th>Gold Weight</th>
+                      <th>Silver Weight</th>
+                      <th>Bronze Weight</th>
+                      <th>Given Date</th>
+                      <th>Completion Date</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Employee</th>
+                      <th>Task</th>
+                      <th>Description</th>
+                      <th>Gold Weight</th>
+                      <th>Silver Weight</th>
+                      <th>Bronze Weight</th>
+                      <th>Given Date</th>
+                      <th>Completion Date</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for taskList in emp_task_list %}
+                        <tr>
+                          <td>{{ taskList.employee.first_name}}  {{taskList.employee.last_name}}</td>
+                          <td>{{ taskList.item }}</td>
+                          <td>{{ taskList.description }}</td>
+                          <td>{{ taskList.gold_weight }}</td>
+                          <td>{{ taskList.silver_weight }}</td>
+                          <td>{{ taskList.bronze_weight }}</td>
+                          <td>{{ taskList.given_date }}</td>
+                          <td>{{ taskList.completion_date }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+{% endblock %}

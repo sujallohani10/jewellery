@@ -6,6 +6,7 @@ from employee.models import EmployeeTasks
 
 
 def employeeTask(request):
+    # Need to add employee to whom task is assigned
     if request.method == 'POST':
         form = EmployeeTaskForm(request.POST)
         if form.is_valid():
@@ -26,3 +27,10 @@ def employeeTask(request):
     else:
         form = EmployeeTaskForm()
     return render(request, 'employee/task.html', {'form': form})
+
+
+def employeeTaskList(request):
+    emp_task_list = EmployeeTasks.objects.all()
+    print(emp_task_list)
+    context = {'emp_task_list': emp_task_list}
+    return render(request, 'employee/tasklist.html', context)
