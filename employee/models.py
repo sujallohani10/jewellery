@@ -16,6 +16,9 @@ class Employee(models.Model):
     status = models.IntegerField(default=1)
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 
 class EmployeeTasks(models.Model):
     employee = models.ForeignKey(Employee, default=1, verbose_name="Tasks", on_delete=models.SET_DEFAULT)

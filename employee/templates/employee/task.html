@@ -9,6 +9,10 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-sm-6">
+                {{ form.employee|as_crispy_field }}
+              </div>
+            </div><div class="row">
+              <div class="col-sm-6">
                 {{ form.item|as_crispy_field }}
               </div>
             </div>
@@ -21,19 +25,20 @@
               <div class="col-sm-6">
                 {{ form.gold_weight|as_crispy_field }}
               </div>
+
+            </div>
+            <div class="row">
               <div class="col-sm-6">
                 {{ form.silver_weight|as_crispy_field }}
               </div>
-            </div>
-            <div class="row">
               <div class="col-sm-6">
                 {{ form.bronze_weight|as_crispy_field }}
               </div>
-              <div class="col-sm-6">
-                  {{ form.task_given_date|as_crispy_field }}
-              </div>
             </div>
             <div class="row">
+                <div class="col-sm-6">
+                  {{ form.task_given_date|as_crispy_field }}
+                </div>
                 <div class="col-sm-6">
                     {{ form.completion_date|as_crispy_field }}
                 </div>
