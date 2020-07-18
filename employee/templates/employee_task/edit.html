@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1>Enter Task for Employee</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.employee|as_crispy_field }}
+              </div>
+            </div><div class="row">
+              <div class="col-sm-6">
+                {{ form.item|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.description|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.gold_weight|as_crispy_field }}
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                {{ form.silver_weight|as_crispy_field }}
+              </div>
+              <div class="col-sm-6">
+                {{ form.bronze_weight|as_crispy_field }}
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                  {{ form.given_date|as_crispy_field }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form.completion_date|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Save Task</button>
+      </form>
+    </div>
+
+{% endblock content %}
+
+{% block javascript %}
+    <script>
+      $(function () {
+        $("#id_task_given_date").datetimepicker({
+          format: 'd/m/Y H:i',
+        });
+        $("#id_completion_date").datetimepicker({
+          format: 'd/m/Y H:i',
+        });
+      });
+    </script>
+{% endblock %}

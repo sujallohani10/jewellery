@@ -25,6 +25,7 @@
                       <th>Bronze Weight</th>
                       <th>Given Date</th>
                       <th>Completion Date</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -37,6 +38,7 @@
                       <th>Bronze Weight</th>
                       <th>Given Date</th>
                       <th>Completion Date</th>
+                      <th></th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -50,6 +52,10 @@
                           <td>{{ taskList.bronze_weight }}</td>
                           <td>{{ taskList.given_date }}</td>
                           <td>{{ taskList.completion_date }}</td>
+                          <td>
+                              <a href="{% url 'task_edit' pk=taskList.id %}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+                              <a href="{% url 'task_delete' pk=taskList.id %}">Delete</a>
+                          </td>
                         </tr>
                     {% endfor %}
                   </tbody>

@@ -9,7 +9,7 @@
             {% csrf_token %}
             <div class="row">
               <div class="col-sm-6">
-                {{ form.employee|as_crispy_field }}
+                {{ form.employee|as_crispy_field}}
               </div>
             </div><div class="row">
               <div class="col-sm-6">
@@ -37,7 +37,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                  {{ form.task_given_date|as_crispy_field }}
+                  {{ form.given_date|as_crispy_field }}
                 </div>
                 <div class="col-sm-6">
                     {{ form.completion_date|as_crispy_field }}
@@ -52,7 +52,7 @@
 {% block javascript %}
     <script>
       $(function () {
-        $("#id_task_given_date").datetimepicker({
+        $("#id_given_date").datetimepicker({
           format: 'd/m/Y H:i',
         });
         $("#id_completion_date").datetimepicker({
