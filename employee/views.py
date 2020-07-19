@@ -6,6 +6,7 @@ from .forms import EmployeeTaskForm
 from employee.models import EmployeeTasks
 
 
+# Add Task
 @login_required(login_url='/accounts/login')
 def addEmployeeTask(request):
     if request.method == 'POST':
@@ -32,6 +33,7 @@ def addEmployeeTask(request):
     return render(request, 'employee_task/add_task.html', {'form': form})
 
 
+# TaskList
 @login_required(login_url='/accounts/login')
 def employeeTaskList(request):
     emp_task_list = EmployeeTasks.objects.all()
@@ -40,6 +42,8 @@ def employeeTaskList(request):
     return render(request, 'employee_task/tasklist.html', context)
 
 
+# Edit Task
+@login_required(login_url='/accounts/login')
 def task_edit(request, pk):
     task_id = int(pk)
     task = get_object_or_404(EmployeeTasks, pk=task_id)
@@ -53,7 +57,11 @@ def task_edit(request, pk):
     return render(request, 'employee_task/edit.html', {'form': form})
 
 
-def task_delete(request, pk):
-    task = EmployeeTasks.objects.get(id=pk)
-    task.delete()
-    return HttpResponseRedirect("/employee/task")
+# Delete Task
+@login_required(login_url='/accounts/login')
+def task_delete(request, pk, template_name='employee_task/confirm_delete.html'):
+    task = get_object_or_404(EmployeeTasks, pk=pk)
+    if request.method == 'POST':
+        task.delete()
+        return HttpResponseRedirect("/employee/task")
+    return render(request, template_name, {'object': task})
