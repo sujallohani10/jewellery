@@ -23,6 +23,7 @@ class Employee(models.Model):
 class EmployeeTasks(models.Model):
     employee = models.ForeignKey(Employee, default=1, verbose_name="Tasks", on_delete=models.SET_DEFAULT)
     item = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='tasks/images/', blank=True)
     description = models.CharField(max_length=250)
     gold_weight = models.CharField(max_length=50)
     silver_weight = models.CharField(max_length=50)

@@ -10,12 +10,13 @@ from employee.models import EmployeeTasks
 @login_required(login_url='/accounts/login')
 def addEmployeeTask(request):
     if request.method == 'POST':
-        form = EmployeeTaskForm(request.POST)
+        form = EmployeeTaskForm(request.POST, request.FILES)
         if form.is_valid():
             # Process the data in form.cleaned_data
             employee = form.cleaned_data['employee']
             item = form.cleaned_data['item']
             desc = form.cleaned_data['description']
+            image = form.cleaned_data['image']
             gold_weight = form.cleaned_data['gold_weight']
             silver_weight = form.cleaned_data['silver_weight']
             bronze_weight = form.cleaned_data['bronze_weight']
@@ -24,7 +25,7 @@ def addEmployeeTask(request):
             emp_task_obj = EmployeeTasks(employee=employee, item=item, description=desc, gold_weight=gold_weight,
                                          silver_weight=silver_weight, bronze_weight=bronze_weight,
                                          given_date=given_date,
-                                         completion_date=completion_date)  # get the data into the employeetask model
+                                         completion_date=completion_date, image=image)  # get the data into the employeetask model
             emp_task_obj.save()
 
             return HttpResponseRedirect('/employee/task')
@@ -48,7 +49,7 @@ def task_edit(request, pk):
     task_id = int(pk)
     task = get_object_or_404(EmployeeTasks, pk=task_id)
     if request.method == "POST":
-        form = EmployeeTaskForm(request.POST, instance=task)
+        form = EmployeeTaskForm(request.POST, request.FILES, instance=task)
         if form.is_valid():
             form.save(commit=True)
             return HttpResponseRedirect('/employee/task')

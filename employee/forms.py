@@ -8,4 +8,5 @@ class EmployeeTaskForm(forms.ModelForm):
 
     class Meta:
         model = EmployeeTasks
-        fields = ('employee', 'item', 'description', 'gold_weight', 'silver_weight', 'bronze_weight', 'given_date', 'completion_date', )
+        fields = ('employee', 'item', 'image', 'description', 'gold_weight', 'silver_weight', 'bronze_weight',
+                  'given_date', 'completion_date', )
